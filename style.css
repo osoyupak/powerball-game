@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
+/* LOTTERY SECTION */
 .balls {
     display: flex;
     justify-content: center
@@ -47,4 +49,73 @@
 
 .play-button:hover {
     cursor: pointer;
+}
+
+/* COUPON SECTION */
+
+.coupons {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.coupons .coupon {
+    font-family: 'Roboto Condensed', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.coupons .coupon .coupon-column {
+    letter-spacing: -1.5px;
+    width: 200px;
+    border: 2px solid red;
+}
+
+.coupons .coupon .coupon-column:nth-child(2n) {
+    border-right: none;
+    border-left: none;
+}
+
+.coupons .coupon .coupon-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.coupons .coupon .coupon-column .coupon-balls,
+.coupons .coupon .coupon-column .coupon-powerballs
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.coupons .coupon .coupon-column .coupon-powerballs {
+    padding-top: 10px;
+    border-top: 2px solid red;
+    background-color: rgb(243, 161, 168);
+}
+
+
+.coupons .coupon .coupon-column .coupon-balls .ball-cell,
+.coupons .coupon .coupon-column .coupon-powerballs .powerball-cell
+{
+    width: 11px;
+    font-size: 14px;   
+    margin: 8px 4px;
+    text-align: center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    position: relative;
+}
+
+.non-clickable {
+    pointer-events: none;
+}
+
+.x {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    z-index: 1;
 }
