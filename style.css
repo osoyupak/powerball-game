@@ -42,9 +42,10 @@
     width: 200px;
     height:50px;
     border: none;
-    background-color: rgb(194, 194, 194);
+    background-color: grey;
     border-radius: 4px;
     font-size: 2rem;
+    pointer-events: none;
 }
 
 .play-button:hover {
@@ -65,14 +66,13 @@
 }
 
 .coupons .coupon .coupon-column {
-    letter-spacing: -1.5px;
     width: 200px;
-    border: 2px solid red;
+    letter-spacing: -1.5px;
 }
 
-.coupons .coupon .coupon-column:nth-child(2n) {
-    border-right: none;
-    border-left: none;
+.coupons .coupon .coupon-column .coupon-balls {
+    border: 2px solid red;
+    border-bottom: none;
 }
 
 .coupons .coupon .coupon-column {
@@ -89,7 +89,7 @@
 
 .coupons .coupon .coupon-column .coupon-powerballs {
     padding-top: 10px;
-    border-top: 2px solid red;
+    border: 2px solid red;
     background-color: rgb(243, 161, 168);
 }
 
