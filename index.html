@@ -12,15 +12,27 @@
 <body>
     <div class="container">
         <div class="balls">
-            <div class="ball ball-1"></div>
-            <div class="ball ball-2"></div>
-            <div class="ball ball-3"></div>
-            <div class="ball ball-4"></div>
-            <div class="ball ball-5"></div>
-            <div class="ball ball-power"></div>
+            <div class="ball ball-shadow ball-1"></div>
+            <div class="ball ball-shadow ball-2"></div>
+            <div class="ball ball-shadow ball-3"></div>
+            <div class="ball ball-shadow ball-4"></div>
+            <div class="ball ball-shadow ball-5"></div>
+            <div class="ball ball-shadow ball-power"></div>
         </div>
-        <div class="play">
-            <button class="play-button">PLAY</button>
+        <div class="display">
+            <div class="budget">
+                $ <span class="budget-span">100</span>
+            </div>
+            <div class="play">
+                <button class="play-button">PLAY</button>
+            </div>
+            <div class="week">
+                Week: <span class="week-span">1</span>
+            </div>
+        </div>
+
+        <div class="info">
+            <p>Firstly fill the coupon then start to play. After you fill the coupon, the play button will be activated.</p> 
         </div>
         <div class="coupons">
             <div class="coupon">
@@ -46,8 +58,8 @@
                 </div>
                 <div class="coupon-column" data-num="4">
                     <div class="coupon-header"></div>
-                    <div class="coupon-balls"></div>
-                    <div class="coupon-powerballs"></div>
+                    <div class="coupon-balls last"></div>
+                    <div class="coupon-powerballs last"></div>
                 </div>
             </div>
         </div>

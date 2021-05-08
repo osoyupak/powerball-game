@@ -7,6 +7,12 @@
     box-sizing: border-box;
 }
 
+.container {
+    width: 1000px;
+    margin-left: auto; 
+    margin-right: auto; 
+}
+
 /* LOTTERY SECTION */
 .balls {
     display: flex;
@@ -14,12 +20,9 @@
 }
 
 .ball {
-    width: 100px;
-    height:100px;
-    background-color: rgb(233, 233, 233);
-    border-radius: 50%;
+    min-width: 100px;
+    min-height:100px;
     margin: 10px;
-    box-shadow: inset -25px -25px 40px rgba(0,0,0,.5);
     text-align: center;
     line-height: 100px;
     font-size:1.7rem;
@@ -27,33 +30,57 @@
 
 }
 
+.ball-shadow {
+    background-color: rgb(233, 233, 233);
+    box-shadow: inset -25px -25px 40px rgba(0,0,0,.5);
+    border-radius: 50%;
+}
+
 .ball-power {
     background-color: #AE2D24;
     color: white
 }
 
+/* DISPLAY SECTION */
+.display {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px; 
+}
+
 .play {
     display: flex;
     justify-content: center;
-    margin-top: 100px;
 }
 
 .play-button {
     width: 200px;
     height:50px;
     border: none;
-    background-color: grey;
+    opacity: 0.6;
     border-radius: 4px;
     font-size: 2rem;
     pointer-events: none;
+    background-color: lightgrey;
 }
 
 .play-button:hover {
     cursor: pointer;
 }
 
-/* COUPON SECTION */
+/* INFO SECTION */
+.info {
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto; 
+    margin-right: auto; 
+    font-family: Arial, Helvetica, sans-serif;
+}
 
+/* COUPON SECTION */
 .coupons {
     margin-right: auto;
     margin-left: auto;
@@ -66,18 +93,33 @@
 }
 
 .coupons .coupon .coupon-column {
-    width: 200px;
     letter-spacing: -1.5px;
 }
 
+.header-ball {
+    width: 20px;
+    height: 20px;
+}
+
 .coupons .coupon .coupon-column .coupon-balls {
-    border: 2px solid red;
-    border-bottom: none;
+    border-left: 2px solid red;
+    border-top: 2px solid red;
+}
+
+.coupons .coupon .coupon-column .coupon-balls.last,
+.coupons .coupon .coupon-column .coupon-powerballs.last
+{
+    border-right: 2px solid red; 
 }
 
 .coupons .coupon .coupon-column {
     display: flex;
     flex-direction: column;
+}
+
+.coupons .coupon .coupon-column .coupon-header {
+    height: 30px;
+    text-align: center;
 }
 
 .coupons .coupon .coupon-column .coupon-balls,
@@ -89,10 +131,12 @@
 
 .coupons .coupon .coupon-column .coupon-powerballs {
     padding-top: 10px;
-    border: 2px solid red;
     background-color: rgb(243, 161, 168);
-}
+    border-left: 2px solid red;
+    border-top: 2px solid red;
+    border-bottom: 2px solid red;
 
+}
 
 .coupons .coupon .coupon-column .coupon-balls .ball-cell,
 .coupons .coupon .coupon-column .coupon-powerballs .powerball-cell

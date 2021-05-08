@@ -3,8 +3,11 @@ const mainRange = 69;
 const powerballRange = 26;
 let winnerArray = new Array();
 let winnerPowerBall;
+
 //dom elements 
 const playButton = document.querySelector(".play-button");
+let week = document.querySelector(".week-span");
+let budget = document.querySelector(".budget-span");
 const balls = document.querySelectorAll(".ball");
 const couponColumns = document.querySelectorAll(".coupon-column");
 let couponHeader = document.querySelectorAll(".coupon-header");
@@ -131,6 +134,8 @@ function clicked() {
     balls[5].innerHTML = winnerPowerBall;
 
     checkWinner();
+    increaseWeek();
+    addPrizes();
 }
 
 //check if the all numbers scribble or not 
@@ -158,21 +163,34 @@ function checkReadyToPlay() {
     //if all the columns are filled, activate play button
     if (playedNumLength == 25) {
         if (playedPowerballLength == 5) {
-            playButton.style.pointerEvents = "auto";
-            playButton.style.backgroundColor = "green";
+            activatePlayButton();
         } else {
-            playButton.style.pointerEvents = "none";
-            playButton.style.backgroundColor = "grey";
+            deactivatePlayButton();
         }
     } else {
-        playButton.style.pointerEvents = "none";
-        playButton.style.backgroundColor = "grey";
+        deactivatePlayButton();
     }
 }
 
+//activate play button
+function activatePlayButton() {
+    playButton.style.pointerEvents = "auto";
+    playButton.style.backgroundColor = "green";
+    playButton.style.opacity = "1";
+    playButton.style.color = "white";
+}
 
+//deactivate play button 
+function deactivatePlayButton() {
+    playButton.style.pointerEvents = "none";
+    playButton.style.opacity = "0.6";
+    playButton.style.backgroundColor = "lightgrey"
+    playButton.style.color = "black";
+}
 
+//give info how many numbers predicted right in each column 
 function checkWinner() {
+    //check balls
     playedNums.forEach((element, index) => {
         let matches = 0;
         element.forEach((el) => {
@@ -182,5 +200,49 @@ function checkWinner() {
         });
         couponHeader[index].innerHTML = matches;
     });
+    //check powerballs
+    playedPowerballs.forEach((element, index) => {
+        let matchedPowerball = 0;
+        element.forEach((el) => {
+            if (winnerPowerBall == el) {
+                matchedPowerball++;
+            }
+        });
+        couponHeader[index].innerHTML += " + " + matchedPowerball;
+    });
+}
 
+//add prizes
+function addPrizes() {
+    couponHeader.forEach((element) => {
+        let inPocket = Number(budget.innerHTML);
+        inPocket -= 2;
+        if (element.innerHTML=="5 + 1") {
+            inPocket += 5000000;
+        } else if (element.innerHTML=="5 + 0") {
+            inPocket += 1000000;
+        } else if (element.innerHTML=="4 + 1") {
+            inPocket += 50000;
+        } else if (element.innerHTML=="4 + 0") {
+            inPocket += 100;
+        } else if (element.innerHTML=="3 + 1") {
+            inPocket += 100;
+        } else if (element.innerHTML=="3 + 0") {
+            inPocket += 7;
+        } else if (element.innerHTML=="2 + 1") {
+            inPocket += 7;
+        } else if (element.innerHTML=="1 + 1") {
+            inPocket += 4;
+        } else if (element.innerHTML=="0 + 1") {
+            inPocket += 4;
+        }
+        budget.innerHTML = inPocket; 
+    });
+}
+
+//increase the week display
+function increaseWeek() {
+    let value = Number(week.innerHTML);
+    value += 1
+    week.innerHTML = value;
 }
