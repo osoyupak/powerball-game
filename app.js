@@ -15,6 +15,8 @@ let couponBalls = document.querySelectorAll(".coupon-balls");
 let couponPowerballs = document.querySelectorAll(".coupon-powerballs");
 let playedNums = [[], [], [], [], []];
 let playedPowerballs = [[], [], [], [], []];
+let ready = new Array();
+
 
 
 //creating coupons
@@ -142,31 +144,42 @@ function clicked() {
 function checkReadyToPlay() {
     let playedNumLength = 0;
     let playedPowerballLength = 0;
+    let readyToPlayTop = false;
+    let readyToPlayBottom = false;
+    let readyToPlay = [[], [], [], [], []];
+    ready = [];
     playedNums.forEach((element, index) => {
         playedNumLength += element.length;
         //if all 5 numbers check, decrease opacity of the column
         if (element.length == 5) {
             couponBalls[index].style.opacity = "0.6";
+            readyToPlayTop = true;
+            readyToPlay[index].push(readyToPlayTop);
         } else {
             couponBalls[index].style.opacity = "1";
+            readyToPlayTop = false;
         }
     })
     playedPowerballs.forEach((element, index) => {
         playedPowerballLength += element.length;
-        //if all 5 numbers check, decrease opacity of the column
+        //if any number check, decrease opacity of the column
         if (element.length == 1) {
             couponPowerballs[index].style.opacity = "0.6";
+            readyToPlayBottom = true;
+            readyToPlay[index].push(readyToPlayBottom);
         } else {
             couponPowerballs[index].style.opacity = "1";
+            readyToPlayTop = false;
         }
     })
-    //if all the columns are filled, activate play button
-    if (playedNumLength == 25) {
-        if (playedPowerballLength == 5) {
-            activatePlayButton();
-        } else {
-            deactivatePlayButton();
+
+    readyToPlay.forEach((el) => {
+        if (el[0] == true && el[1] == true) {
+            ready.push(true);
         }
+    })
+    if (ready.includes(true)) {
+        activatePlayButton();
     } else {
         deactivatePlayButton();
     }
@@ -214,30 +227,33 @@ function checkWinner() {
 
 //add prizes
 function addPrizes() {
+    let inPocket;
     couponHeader.forEach((element) => {
-        let inPocket = Number(budget.innerHTML);
-        inPocket -= 2;
-        if (element.innerHTML=="5 + 1") {
+        inPocket = Number(budget.innerHTML);
+        if (element.innerHTML == "5 + 1") {
             inPocket += 5000000;
-        } else if (element.innerHTML=="5 + 0") {
+        } else if (element.innerHTML == "5 + 0") {
             inPocket += 1000000;
-        } else if (element.innerHTML=="4 + 1") {
+        } else if (element.innerHTML == "4 + 1") {
             inPocket += 50000;
-        } else if (element.innerHTML=="4 + 0") {
+        } else if (element.innerHTML == "4 + 0") {
             inPocket += 100;
-        } else if (element.innerHTML=="3 + 1") {
+        } else if (element.innerHTML == "3 + 1") {
             inPocket += 100;
-        } else if (element.innerHTML=="3 + 0") {
+        } else if (element.innerHTML == "3 + 0") {
             inPocket += 7;
-        } else if (element.innerHTML=="2 + 1") {
+        } else if (element.innerHTML == "2 + 1") {
             inPocket += 7;
-        } else if (element.innerHTML=="1 + 1") {
+        } else if (element.innerHTML == "1 + 1") {
             inPocket += 4;
-        } else if (element.innerHTML=="0 + 1") {
+        } else if (element.innerHTML == "0 + 1") {
             inPocket += 4;
         }
-        budget.innerHTML = inPocket; 
+        budget.innerHTML = inPocket;
     });
+    let costOfPlay = 2 * ready.length;
+    budgetNum = Number(budget.innerHTML);
+    budget.innerHTML = budgetNum-costOfPlay;
 }
 
 //increase the week display
