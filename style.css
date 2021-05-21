@@ -30,6 +30,11 @@
 
 }
 
+.budget, .week {
+    font-family: 'Krona One', sans-serif;
+    font-size:1.25rem;
+}
+
 .ball-shadow {
     background-color: rgb(233, 233, 233);
     box-shadow: inset -25px -25px 40px rgba(0,0,0,.5);
@@ -70,7 +75,7 @@
 }
 
 /* INFO SECTION */
-.info {
+#info {
     display: flex;
     height: 70px;
     align-items: center;
@@ -100,6 +105,16 @@
     width: 20px;
     height: 20px;
 }
+
+.coupons .coupon .coupon-column {
+    color: red;
+    font-weight: bolder;
+
+}
+
+.coupons .coupon .coupon-column .coupon-header{
+opacity: 1;
+} 
 
 .coupons .coupon .coupon-column .coupon-balls {
     border-left: 2px solid red;
@@ -133,7 +148,6 @@
     padding-top: 10px;
     background-color: rgb(243, 161, 168);
     border-left: 2px solid red;
-    border-top: 2px solid red;
     border-bottom: 2px solid red;
 
 }
@@ -145,8 +159,8 @@
     font-size: 14px;   
     margin: 8px 4px;
     text-align: center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-top: 1px solid red;
+    border-bottom: 1px solid red;
     cursor: pointer;
     position: relative;
 }
@@ -162,4 +176,5 @@
     transform: translate(-50%, -50%);
     font-size: 16px;
     z-index: 1;
+    color: black;
 }

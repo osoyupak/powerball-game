@@ -8,6 +8,7 @@ let winnerPowerBall;
 const playButton = document.querySelector(".play-button");
 let week = document.querySelector(".week-span");
 let budget = document.querySelector(".budget-span");
+const info = document.getElementById("info");
 const balls = document.querySelectorAll(".ball");
 const couponColumns = document.querySelectorAll(".coupon-column");
 let couponHeader = document.querySelectorAll(".coupon-header");
@@ -138,6 +139,16 @@ function clicked() {
     checkWinner();
     increaseWeek();
     addPrizes();
+    gameOver();
+}
+
+function gameOver() {
+    if(Number(budget.textContent)<=0) {
+        console.log("game over")
+        info.innerHTML="Game Over. You have no money"
+        deactivatePlayButton();
+    }
+
 }
 
 //check if the all numbers scribble or not 
@@ -173,7 +184,7 @@ function checkReadyToPlay() {
         }
     })
 
-    readyToPlay.forEach((el) => {
+    readyToPlay.forEach((el,index) => {
         if (el[0] == true && el[1] == true) {
             ready.push(true);
         }
